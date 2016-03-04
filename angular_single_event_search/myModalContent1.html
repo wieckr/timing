@@ -1,0 +1,43 @@
+<div class="modal-header">
+        <div>
+            <h3 class="modal-title">{{eventName}} Results for {{items.Name | uppercase}}</h3>
+            <p><b>{{eventCity}}  {{eventDate}}</b></p>
+        </div>
+        <div class="modal-body">
+          <table>
+            <thead>
+              <tr>
+              <th class="quarter_width">Bib#: {{items.bib}}</th>
+              <th class="quarter_width">Gender: {{items.Gender}}</th>
+              <th class="quarter_width">City: {{items.City}}</th>
+              <th class="quarter_width">Age: {{items.Age}}</th>
+            </tr>
+            </thead>
+          </table>
+         <hr>
+          <table class="individual_table table-striped">
+            <thead></thead>
+            <tbody>
+              <tr>
+                <th>Overall Place</th>
+                <th>{{items.Place}}</th>
+              </tr>
+              <tr>
+                <th>Overall Time</th>
+                <th>{{items.totalTime}}</th>
+              </tr>
+              <tr>
+                <th>Age Group</th>
+                <th>{{items.ageGroupEdit}}</th>
+              </tr>
+              <tr>
+                <th>Place in Age Group</th>
+                <th>{{items.ageGroupPlace}}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="close()">Close</button>
+        </div>
+        </div>

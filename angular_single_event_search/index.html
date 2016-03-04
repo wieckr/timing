@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+  <script data-require="angular.js@1.5.0" data-semver="1.5.0" src="//code.angularjs.org/1.5.0/angular.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.0/bootstrap.min.js"></script>-->
+  <script src="https://code.angularjs.org/1.5.0/angular-animate.min.js"></script>
+  <script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+  <script data-require="ui-bootstrap@1.1.2" data-semver="1.1.2" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.min.js"></script>
+  <script data-require="lodash.js@3.10.0" data-semver="3.10.0" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js"></script>
+  <script src="smart-table.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body ng-app="myApp" ng-controller="mainCtrl">
+  <span ><h1 class="eventTitle"> {{eventName}} Results</h1> <button class="btn reset btn-link" type="button" ng-click="resetFilters()">Reset Filters</button> </span>
+  <span class="subtitle"><h3>{{eventCity}}         {{eventDate}} </h3>
+  </span>
+
+
+  
+  <div class = "table-hover" id="results">
+        
+
+    <table id="total_results" st-set-filter="customFilter" st-table="displayed" st-safe-src="collection" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th st-ratio="10" st-sort="Place">Overall Place</th>
+          <th st-ratio="30" st-sort="Name">Name</th>
+          <th st-ratio="10" st-sort="Time">Total Time</th>
+          <th st-ratio="10" st-sort="Gender">Gender</th>
+          <th st-ratio="10" st-sort="bib">Bib Num</th>
+          <th st-ratio="10" st-sort="Age">Age</th>
+          <th st-ratio="20" st-sort="ageGroup">Age Group</th>
+
+        </tr>
+        <tr>
+          <th st-ratio="10">
+            <input placeholder="search place" st-search="Place" />
+          </th>
+          <th st-ratio="30">
+            <input placeholder="search name" st-search="Name" />
+          </th>
+          <th st-ratio="10">
+            <input placeholder="search time" st-search="totalTime" />
+          </th>
+          <th st-ratio="10">
+            <st-select-distinct collection="collection" predicate="Gender"></st-select-distinct>
+          </th>
+          <th st-ratio="10">
+            <input placeholder="search bib" st-search="bib" />
+          </th>
+          <th st-ratio="10">
+            <input placeholder="search age" st-search="Age" />
+          </th>
+          <th st-ratio="20">
+            <st-select-distinct ng-model="ageGroupFilter" collection="collection" predicate="ageGroup"></st-select-distinct>
+            <!--<select ng-model="ageGroupFilter" ng-options="(row.ageGroup | ageGroupParse) as (row.ageGroup | ageGroupParse) for row in displayed | unique:'ageGroup'"></select> -->
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-controller="ModalDemoCtrl" ng-repeat="row in displayed">
+          <td st-ratio="10" ng-click="open(row)">{{row.Place}}</td>
+          <td st-ratio="30" ng-click="open(row)">{{row.Name | uppercase}}</td>
+          <td st-ratio="10" ng-click="open(row)">{{row.totalTime}}</td>
+          <td st-ratio="10" ng-click="open(row)">{{row.Gender}}</td>
+          <td st-ratio="10" ng-click="open(row)">{{row.bib}}</td>
+          <td st-ratio="10" ng-click="open(row)">{{row.Age | number}}</td>
+          <td st-ratio="20" ng-click="open(row)">{{row.ageGroup}}</td>
+
+        </tr>
+      </tbody>
+
+      <tfoot>
+
+        <tr>
+          <td colspan="10" class="text-center">
+            <div st-items-by-page="500" st-pagination=""></div>
+          </td>
+        </tr>
+
+      </tfoot>
+    </table>
+
+  </div>
+      
+</body>
+
+</html>
