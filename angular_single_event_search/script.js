@@ -25,7 +25,7 @@
           //hacky at the moment, but just changes $scope.collection so the watch gets refreshed upon clicking      
           $scope.collection[0].clear = 'cleared on' + Date.now();
         }
-        angular.forEach(data, function(row, key) {
+        angular.forEach($scope.collection, function(row, key) {
           $scope.collection[key].ageGroupEdit = $scope.collection[key].ageGroup.replace(/^[0-9]+ /, "");
           $scope.collection[key].ageGroupPlace = String($scope.collection[key].ageGroup.match(/^[0-9]+/));
         });
